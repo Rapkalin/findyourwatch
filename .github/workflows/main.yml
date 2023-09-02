@@ -14,7 +14,7 @@ jobs:
         php: [ 8.1 ]
 
     steps:
-      - name: checkout code
+      - name: checkout findyourwatch
         uses: actions/checkout@v3
 
       - name: Restore the Composer cache directory
@@ -53,9 +53,9 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
-          script: "[ ! -d ~/findyourwatch/website ] || rm -rf ~/findyourwatch/old_website ~/code/findyourwatch/vendor && mv -fu ~/findyourwatch/website ~/findyourwatch/old_website"
+          script: "[ ! -d ~/findyourwatch/website ] || rm -rf ~/findyourwatch/old_website ~/findyourwatch/website/vendor && mv -fu ~/findyourwatch/website ~/findyourwatch/old_website"
 
-      - name: checkout code
+      - name: checkout findyourwatch
         uses: actions/checkout@v3
 
       - name: Download artifact
@@ -67,12 +67,15 @@ jobs:
         run: |
          unzip -o release.zip
 
+      - name: Refresh cache
+        uses: "cd website/ && sh scripts/refresh_cache.sh"
+
       - name: Deploy with rsync
         uses: burnett01/rsync-deployments@5.2
         with:
           switches: -avzr --delete
           path: ./website
-          remote_path: ~/code
+          remote_path: ~/findyourwatch
           remote_host: ${{ secrets.DEPLOY_HOST }}
           remote_user: ${{ secrets.DEPLOY_USER }}
           remote_key: ${{ secrets.DEPLOY_KEY }}
