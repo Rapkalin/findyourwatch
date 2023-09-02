@@ -74,7 +74,7 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
-          script: "cd website/ && sh scripts/refresh_cache.sh"
+          script: "cd ~/findyourwatch/website && sh scripts/refresh_cache.sh"
 
       - name: Deploy with rsync
         uses: burnett01/rsync-deployments@5.2
