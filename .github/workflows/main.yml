@@ -102,5 +102,5 @@ jobs:
           script: |
             ln -nsrf ~/findyourwatch/shared/.env ~/findyourwatch/website/.env
             ln -nsrf ~/findyourwatch/shared/cache ~/findyourwatch/website/bootstrap/cache
-            rm ~/findyourwatch/website/.htaccess
             ln -nsrf ~/findyourwatch/shared/.htaccess ~/findyourwatch/website/.htaccess
+            ln -nsrf ~/findyourwatch/shared/.htpasswd ~/findyourwatch/website/.htpasswd
