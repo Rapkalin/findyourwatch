@@ -85,6 +85,7 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
           script: |
+            cd ~/findyourwatch/website
             ~/bin/php artisan cache:clear
             ~/bin/php artisan config:clear
             ~/bin/php artisan config:cache
