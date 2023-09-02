@@ -185,4 +185,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'rakutenApiToken' => env('RAKUTEN_API_KEY', ''),
 ];

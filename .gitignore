@@ -1,4 +1,5 @@
 .idea/
+.DS_Store
 /vendor/
 node_modules/
 npm-debug.log
@@ -22,3 +23,6 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+.htpasswd
+.htaccess
