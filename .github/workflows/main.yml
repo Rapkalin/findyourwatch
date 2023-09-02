@@ -68,7 +68,9 @@ jobs:
          unzip -o release.zip
 
       - name: Refresh cache
-        uses: "cd website/ && sh scripts/refresh_cache.sh"
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          script: "cd website/ && sh scripts/refresh_cache.sh"
 
       - name: Deploy with rsync
         uses: burnett01/rsync-deployments@5.2
