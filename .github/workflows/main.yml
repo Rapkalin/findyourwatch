@@ -77,11 +77,21 @@ jobs:
           remote_user: ${{ secrets.DEPLOY_USER }}
           remote_key: ${{ secrets.DEPLOY_KEY }}
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Refresh cache
+        uses: appleboy/ssh-action@v0.1.10
         with:
-          php-version: '8.1'
-          script: "cd ~/findyourwatch/website && sh scripts/refresh_cache.sh"
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          script: |
+            "cd ~/findyourwatch/website
+            ~/bin/php artisan cache:clear
+            ~/bin/php artisan config:clear
+            ~/bin/php artisan config:cache
+            ~/bin/php artisan route:clear
+            ~/bin/php artisan route:cache
+            
 
       - name: create new Symlink
         uses: appleboy/ssh-action@v0.1.10
