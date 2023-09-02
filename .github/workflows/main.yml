@@ -80,11 +80,12 @@ jobs:
       - name: Refresh cache
         uses: appleboy/ssh-action@v0.1.10
         with:
+          php-version: 8.1
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
-          script: "cd ~/findyourwatch/website && ~/bin/php && sh scripts/refresh_cache.sh"
+          script: "cd ~/findyourwatch/website && sh scripts/refresh_cache.sh"
 
       - name: create new Symlink
         uses: appleboy/ssh-action@v0.1.10
