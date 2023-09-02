@@ -184,6 +184,4 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
-
-    'rakutenApiToken' => env('RAKUTEN_API_KEY', ''),
 ];
