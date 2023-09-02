@@ -70,6 +70,10 @@ jobs:
       - name: Refresh cache
         uses: appleboy/ssh-action@v0.1.10
         with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
           script: "cd website/ && sh scripts/refresh_cache.sh"
 
       - name: Deploy with rsync
