@@ -84,7 +84,7 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
-          script: "cd ~/findyourwatch/website && php -v"
+          script: "cd ~/findyourwatch/website && ~/bin/php -v"
 
       - name: create new Symlink
         uses: appleboy/ssh-action@v0.1.10
